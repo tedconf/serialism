@@ -25,7 +25,7 @@ module Serialism
     #    All member items should be encodable by `serializer`.
     # @param[Serialism::Serializer] serializer
     #    The serializer class used to encode members of `items`.
-    def initialize(items=[], serializer:nil)
+    def initialize(items=[], serializer:)
       if ! serializer.respond_to?(:attributes)
         raise ArgumentError, "serializer must implement a class-level :attributes method"
       end
