@@ -20,10 +20,10 @@ module Serialism
 
     # create a new collection
     #
-    # @param[Enumerable] items
+    # @param [Enumerable] items
     #    A collection of items.
     #    All member items should be encodable by `serializer`.
-    # @param[Serialism::Serializer] serializer
+    # @param [Serialism::Serializer] serializer
     #    The serializer class used to encode members of `items`.
     def initialize(items=[], serializer:)
       if ! serializer.respond_to?(:attributes)
@@ -42,7 +42,7 @@ module Serialism
     # Replaces any previous items already in the collection.
     #
     # @param [#each] items an enumerable collection of items
-    # @return [CsvCollection]
+    # @return [Serialism::Collection]
     def items=(items)
       raise ArgumentError, "argument must respond_to :each" if ! items.respond_to?(:each)
       raise ArgumentError, "argument must respond_to :map" if ! items.respond_to?(:map)
