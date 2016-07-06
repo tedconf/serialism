@@ -38,11 +38,6 @@ set -e
 # Update all our gems
 bundle install
 
-# Security check
-ignores=""
-bundle exec bundle-audit update
-bundle exec bundle-audit check --ignore=${ignores}
-
 export COVERAGE=on
 bundle exec rake spec
 
@@ -63,8 +58,9 @@ bundle exec rubocop \
   --format RuboCop::Formatter::CheckstyleFormatter \
   --out tmp/checkstyle.xml || true
 
-# Security scan
-# See http://brakemanscanner.org/docs/ignoring_false_positives/ to ignore anything reported here.
-bundle exec brakeman -z --format html --output build/brakeman.html
+# Security check
+ignores=""
+bundle exec bundle-audit update
+bundle exec bundle-audit check --ignore=${ignores}
 
 exit 0
