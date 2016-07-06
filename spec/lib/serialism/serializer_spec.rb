@@ -28,7 +28,7 @@ RSpec.describe Serialism::Serializer, type: :model do
 
     it 'should prefer attribute implementations in the serializer' do
       values = subject.new(item).render
-      expect(values[:computed]).to eq "computed by serializer - 1"
+      expect(values[:computed]).to eq 'computed by serializer - 1'
     end
 
     it 'should use attribute implementation in the object if not defined explicitly in serializer' do
