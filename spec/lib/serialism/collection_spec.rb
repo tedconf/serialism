@@ -34,7 +34,12 @@ RSpec.describe Serialism::Collection, type: :model do
 
       expect {
         Serialism::Collection.new([], serializer: invalid_serializer)
-      }.to raise_error(ArgumentError, 'serializer must implement a class-level :attributes method')
+      }.to(
+        raise_error(
+          ArgumentError,
+          'serializer must implement a class-level :attributes method'
+        )
+      )
     end
 
     it 'should require serializer to implement instance-level render' do
@@ -75,6 +80,12 @@ RSpec.describe Serialism::Collection, type: :model do
     it 'should return array of attributes' do
       expect(collection.attributes).to eq serializer.attributes
     end
+
+    it 'should return empty array if no items exist' do
+      expect(
+        Serialism::Collection.new([], serializer: serializer).attributes
+      ).to eq []
+    end
   end
 
   describe 'to_csv' do
@@ -106,7 +117,13 @@ EOF
 
   describe 'to_json' do
     it 'should generate json' do
-      expect(collection.to_json).to eq '[{"id":0,"computed":"computed - 0"},{"id":1,"computed":"computed - 1"},{"id":2,"computed":"computed - 2"}]'
+      expect(collection.to_json).to eq(
+        '[' \
+          '{"id":0,"computed":"computed - 0"},' \
+          '{"id":1,"computed":"computed - 1"},' \
+          '{"id":2,"computed":"computed - 2"}' \
+        ']'
+      )
     end
   end
 

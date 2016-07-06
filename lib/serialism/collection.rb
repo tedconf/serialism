@@ -25,11 +25,11 @@ module Serialism
     #    All member items should be encodable by `serializer`.
     # @param [Serialism::Serializer] serializer
     #    The serializer class used to encode members of `items`.
-    def initialize(items=[], serializer:)
-      if ! serializer.respond_to?(:attributes)
+    def initialize(items = [], serializer:)
+      if !serializer.respond_to?(:attributes)
         raise ArgumentError, 'serializer must implement a class-level :attributes method'
       end
-      if ! serializer.instance_methods.include?(:render)
+      if !serializer.instance_methods.include?(:render)
         raise ArgumentError, 'serializer must implement an instance-level :render method'
       end
       @serializer = serializer
@@ -44,8 +44,8 @@ module Serialism
     # @param [#each] items an enumerable collection of items
     # @return [Serialism::Collection]
     def items=(items)
-      raise ArgumentError, 'argument must respond_to :each' if ! items.respond_to?(:each)
-      raise ArgumentError, 'argument must respond_to :map' if ! items.respond_to?(:map)
+      raise ArgumentError, 'argument must respond_to :each' if !items.respond_to?(:each)
+      raise ArgumentError, 'argument must respond_to :map' if !items.respond_to?(:map)
 
       @items = items
       self
@@ -55,7 +55,7 @@ module Serialism
     #
     # @return [Array]
     def attributes
-      return [] if items.size == 0
+      return [] if items.empty?
 
       @serializer.attributes
     end
@@ -87,7 +87,7 @@ module Serialism
     def to_json
       require 'json'
 
-      JSON.dump(items.map {|t| @serializer.new(t).render })
+      JSON.dump(items.map { |t| @serializer.new(t).render })
     end
 
   end

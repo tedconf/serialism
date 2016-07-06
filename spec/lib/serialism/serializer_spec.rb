@@ -31,7 +31,7 @@ RSpec.describe Serialism::Serializer, type: :model do
       expect(values[:computed]).to eq 'computed by serializer - 1'
     end
 
-    it 'should use attribute implementation in the object if not defined explicitly in serializer' do
+    it 'should use attribute implementation in object if not defined explicitly in serializer' do
       values = subject.new(item).render
       expect(values[:id]).to eq 1
     end

@@ -28,9 +28,7 @@ module Serialism
 
     @attributes = []
     def self.attributes(*attrs)
-      if attrs.size > 0
-        @attributes = attrs
-      end
+      @attributes = attrs if !attrs.empty?
       @attributes
     end
 
@@ -44,7 +42,7 @@ module Serialism
     def render
       self.class.attributes.inject({}) do |memo, attr|
         if respond_to?(attr)
-          memo[attr] = self.send(attr)
+          memo[attr] = send(attr)
         elsif object.respond_to?(attr)
           memo[attr] = object.send(attr)
         else

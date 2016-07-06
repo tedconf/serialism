@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Serialism::VERSION
   spec.authors       = ['Alex Dean']
   spec.email         = ['github@mostlyalex.com']
-  spec.summary       = %q{Like ActiveModel::Serializer but smaller and not JSON-centric.}
+  spec.summary       = 'Like ActiveModel::Serializer but smaller and not JSON-centric.'
   spec.homepage      = 'https://github.com/tedconf/serialism'
   spec.license       = 'MIT'
 
