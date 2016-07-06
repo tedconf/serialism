@@ -42,7 +42,7 @@ module Serialism
     #
     # @return [Hash] Keys are defined by the classes `attributes`.
     def render
-      self.class.attributes.inject({}) do |memo,attr|
+      self.class.attributes.inject({}) do |memo, attr|
         if respond_to?(attr)
           memo[attr] = self.send(attr)
         elsif object.respond_to?(attr)

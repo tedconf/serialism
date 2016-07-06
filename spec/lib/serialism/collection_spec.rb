@@ -91,8 +91,8 @@ EOF
 
     it 'should encode complex cells as csv strings' do
       collection.items = [
-        serialized.new([1,2,3]),
-        serialized.new([4,5,6])
+        serialized.new([1, 2, 3]),
+        serialized.new([4, 5, 6])
       ]
 
       expected = <<-EOF
