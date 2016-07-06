@@ -36,7 +36,7 @@ echo "PATH is ${PATH}"
 set -e
 
 # Update all our gems
-bundle install --without development
+bundle install
 
 # Security check
 ignores=""
