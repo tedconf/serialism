@@ -1,5 +1,4 @@
 module Serialism
-
   # Base class for concrete serializers to inherit from.
   #
   # Example:
@@ -23,7 +22,6 @@ module Serialism
   #   serializer.render
   #   # => {id: 12, computed: "computed - 12"}
   class Serializer
-
     attr_reader :object
 
     @attributes = []
@@ -51,7 +49,5 @@ module Serialism
         memo
       end
     end
-
   end
-
 end

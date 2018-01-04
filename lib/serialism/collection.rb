@@ -1,5 +1,4 @@
 module Serialism
-
   # Combines a set of items and a serializer class.
   #
   # Example:
@@ -15,7 +14,6 @@ module Serialism
   #   Serialism::Collection.new(a_bunch_of_foo_instances, serializer: FooSerializer).to_csv
   #   #=> returns a CSV string
   class Collection
-
     attr_reader :items
 
     # create a new collection
@@ -89,6 +87,5 @@ module Serialism
 
       JSON.dump(items.map { |t| @serializer.new(t).render })
     end
-
   end
 end

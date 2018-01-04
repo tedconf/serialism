@@ -1,10 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.3
 
-# not sure full implications here.
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 inherit_from:
   - https://raw.githubusercontent.com/tedconf/code-style-guides/master/linters/rubocop/rubocop.yml
   - .rubocop_todo.yml
