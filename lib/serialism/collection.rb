@@ -70,13 +70,8 @@ module Serialism
 
       CSV.generate do |csv|
         csv << attributes
-        items.each do |t|
-
-          row = @serializer.new(t).render.values.map do |cell|
-            csv_value_to_s(cell)
-          end
-
-          csv << row
+        items.map do |i|
+          csv << render_row(i)
         end
       end
     end
@@ -92,21 +87,16 @@ module Serialism
     def to_a
       output = []
       output << attributes
-      items.each do |t|
-        row = @serializer.new(t).render.values.map do |cell|
-          csv_value_to_s(cell)
-        end
-
-        output << row
-      end
-      output
+      output += items.map { |i| render_row(i) }
     end
 
     private
 
-    # convert complex cells to comma-separated strings
-    def csv_value_to_s(cell)
-      cell.is_a?(Array) ? cell.join(',') : cell
+    def render_row(row)
+      @serializer.new(row).render.values.map do |cell|
+        cell.is_a?(Array) ? cell.join(',') : cell
+      end
     end
+
   end
 end
