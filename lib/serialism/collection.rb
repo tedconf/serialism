@@ -70,14 +70,8 @@ module Serialism
 
       CSV.generate do |csv|
         csv << attributes
-        items.each do |t|
-
-          row = @serializer.new(t).render.values.map do |cell|
-            # convert complex cells to comma-separated strings
-            cell.is_a?(Array) ? cell.join(',') : cell
-          end
-
-          csv << row
+        items.map do |i|
+          csv << render_row(i)
         end
       end
     end
@@ -86,6 +80,20 @@ module Serialism
       require 'json'
 
       JSON.dump(items.map { |t| @serializer.new(t).render })
+    end
+
+    # this generates an array of arrays
+    # headers are [0] data starts at [1]
+    def to_a
+      [attributes] + items.map { |i| render_row(i) }
+    end
+
+    private
+
+    def render_row(row)
+      @serializer.new(row).render.values.map do |cell|
+        cell.is_a?(Array) ? cell.join(',') : cell
+      end
     end
   end
 end
