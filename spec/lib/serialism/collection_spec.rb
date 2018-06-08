@@ -129,7 +129,11 @@ EOF
 
   describe 'to_a' do
     it 'should generate an array' do
-      expected = [[:id, :computed], [0, 'computed - 0'], [1, 'computed - 1'], [2, 'computed - 2']]
+      expected = [[:id, :computed],
+                  [0, 'computed - 0'],
+                  [1, 'computed - 1'],
+                  [2, 'computed - 2']
+                ]
       expect(collection.to_a).to eq expected
     end
 
@@ -139,7 +143,10 @@ EOF
         serialized.new([4, 5, 6])
       ]
 
-      expected = [[:id, :computed], ["1,2,3", "computed - [1, 2, 3]"], ["4,5,6", "computed - [4, 5, 6]"]]
+      expected = [[:id, :computed],
+                  ["1,2,3", "computed - [1, 2, 3]"],
+                  ["4,5,6", "computed - [4, 5, 6]"]
+                 ]
       expect(collection.to_a).to eq expected
     end
   end
