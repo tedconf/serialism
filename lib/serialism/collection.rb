@@ -73,8 +73,7 @@ module Serialism
         items.each do |t|
 
           row = @serializer.new(t).render.values.map do |cell|
-            # convert complex cells to comma-separated strings
-            cell.is_a?(Array) ? cell.join(',') : cell
+            csv_value_to_s(cell)
           end
 
           csv << row
@@ -86,6 +85,13 @@ module Serialism
       require 'json'
 
       JSON.dump(items.map { |t| @serializer.new(t).render })
+    end
+
+    private
+
+    # convert complex cells to comma-separated strings
+    def csv_value_to_s(cell)
+      cell.is_a?(Array) ? cell.join(',') : cell
     end
   end
 end
