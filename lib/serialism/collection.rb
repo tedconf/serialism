@@ -87,6 +87,21 @@ module Serialism
       JSON.dump(items.map { |t| @serializer.new(t).render })
     end
 
+    # this generates an array of arrays
+    # headers are [0] data starts at [1]
+    def to_a
+      output = []
+      output << attributes
+      items.each do |t|
+        row = @serializer.new(t).render.values.map do |cell|
+          csv_value_to_s(cell)
+        end
+
+        output << row
+      end
+      output
+    end
+
     private
 
     # convert complex cells to comma-separated strings
