@@ -85,9 +85,7 @@ module Serialism
     # this generates an array of arrays
     # headers are [0] data starts at [1]
     def to_a
-      output = []
-      output << attributes
-      output + items.map { |i| render_row(i) }
+      [attributes] + items.map { |i| render_row(i) }
     end
 
     private
