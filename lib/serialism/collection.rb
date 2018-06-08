@@ -87,7 +87,7 @@ module Serialism
     def to_a
       output = []
       output << attributes
-      output += items.map { |i| render_row(i) }
+      output + items.map { |i| render_row(i) }
     end
 
     private
@@ -97,6 +97,5 @@ module Serialism
         cell.is_a?(Array) ? cell.join(',') : cell
       end
     end
-
   end
 end
